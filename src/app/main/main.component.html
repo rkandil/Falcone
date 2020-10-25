@@ -1,0 +1,14 @@
+{{ currentStep }}
+<div #falcons>
+    <fc-planet (returnPlanetEmit)="changeOutputPlanet($event)"></fc-planet>
+</div>
+
+
+
+
+{{finalStep}}
+<input type="button" (click)="findResult()" value="Find Results" *ngIf="finalStep" />
+<div>{{returnedResult | async}}</div>
+
+
+

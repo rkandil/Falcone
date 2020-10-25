@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  planets_url: "https://findfalcone.herokuapp.com/planets",
+  vehicle_url: "https://findfalcone.herokuapp.com/vehicles",
+  end_result_url: "https://findfalcone.herokuapp.com/find",
+  get_token: "https://5f5ff7f790cf8d00165573ed.mockapi.io/token",
+  default_error_message: "An unexpected error message occured",
+  token_default_value: "PlmVXHewGEQxKJIpWnKCBtNMepseniTM",
+  maximum_number_steps: 8
 };
 
 /*

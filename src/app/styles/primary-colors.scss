@@ -1,0 +1,23 @@
+@import "colors.scss";
+
+$primary-color: $light-blue;
+$secondary-color: $dark-blue;
+$teritary-color: $sky-blue;
+$accent-color: $beige;
+$error-color: $red-brown;
+
+$dark: $black;
+$light: $white;
+
+$bv-colors:(
+	"primary"  : $primary-color,
+	"secondary": $secondary-color,
+    "teritary-color": $sky-blue,
+    "accent-color": $beige,
+    "error-color": $red-brown,
+    "dark": $black,
+    "light": $white,
+);
+
+
+

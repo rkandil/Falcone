@@ -1,0 +1,4 @@
+<select (change)="changeValue($event)">
+    <option></option>
+    <option [value]="planet.name + ':::$$$:::' + planet.distance" *ngFor = "let planet of planets">{{ planet.name }}</option>
+</select>
