@@ -32,7 +32,6 @@ export class MainComponent implements OnInit {
   public returnedPlanet: string;
   public token: string;
   private uniqueId: string;
-  public maximumNumberOfSteps: number;
 
   @ViewChild("falcons", { read: ViewContainerRef }) container;
   @ViewChild("falconsMainContainer") mainContainer;
@@ -53,7 +52,9 @@ export class MainComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.maximumNumberOfSteps = environment.maximum_number_steps;
+    if (!this.falconStoreService.getDifficulty()) {
+      this.router.navigate(['/falcone-difficulty']);
+    }
     this.wizardService.getWizard().subscribe(val => {
       this.currentStep = val;
       if (this.currentStep === 1) {
@@ -65,7 +66,7 @@ export class MainComponent implements OnInit {
             this.falconStoreService.setToken(environment.token_default_value);
           }
         });
-      } else if (this.currentStep  > this.maximumNumberOfSteps) {
+      } else if (this.currentStep  > this.falconStoreService.getDifficulty()) {
         this.cachingService.resetCache();
         this.router.navigate(['falcone-result']);
       }
@@ -84,7 +85,7 @@ export class MainComponent implements OnInit {
 
 
   public changeOutputVehicle(data: VehicleOutput) {
-    if (data.currentStep <= environment.maximum_number_steps){
+    if (data.currentStep <= this.falconStoreService.getDifficulty()){
       if (isOldComponent (data.uniqueId)){
         const factory: ComponentFactory<PlanetComponent> = this.resolver.resolveComponentFactory(PlanetComponent);
         this.componentRef = this.container.createComponent(factory);

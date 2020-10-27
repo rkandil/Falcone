@@ -35,13 +35,8 @@ export class ResultComponent implements OnInit {
       } else {
         this.timeTaken = this.falconStoreService.getTime();
       }
-
-      
-
       this.wizardService.resetWizard();
       this.falconStoreService.resetStore();
-
-
   });
 
   }

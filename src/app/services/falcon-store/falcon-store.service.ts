@@ -8,10 +8,13 @@ import { hasUniquId, setUniquId } from 'src/app/common/unique-id';
   providedIn: 'root'
 })
 export class FalconStoreService {
-  private returnFalcon:Falcons = {token: "", planet_names: [], vehicle_names: [], time: 0};
-  private readonly maximum_array_size = environment.maximum_number_steps/2;
+  private returnFalcon:Falcons = {token: "", planet_names: [], vehicle_names: [], time: 0, maximum_number_steps: 0};
 
   constructor(private errorService: ErrorService) { }
+
+  private getMaximumArraySize ():number {
+    return this.getDifficulty ()/2;
+  }
 
   setToken (token: string) {
     this.returnFalcon.token = token;
@@ -26,7 +29,7 @@ export class FalconStoreService {
   setPlanet (planetName: string, uniqueId: string) {
     const prefix = 'store-planet';
     if (!hasUniquId (prefix, uniqueId)) {
-      if (this.returnFalcon.planet_names.length < this.maximum_array_size) {
+      if (this.returnFalcon.planet_names.length < this.getMaximumArraySize()) {
         this.returnFalcon.planet_names.push(planetName);
       } else {
         this.errorService.handleError(555);
@@ -41,7 +44,7 @@ export class FalconStoreService {
   setVehicle (vehicleName: string, uniqueId: string) {
     const prefix = 'store-vehicle';
     if (!hasUniquId (prefix, uniqueId)) {
-      if (this.returnFalcon.vehicle_names.length < this.maximum_array_size) {
+      if (this.returnFalcon.vehicle_names.length < this.getMaximumArraySize()) {
         this.returnFalcon.vehicle_names.push(vehicleName);
       } else {
         this.errorService.handleError(555);
@@ -68,5 +71,13 @@ export class FalconStoreService {
 
   getTime(): number {
     return this.returnFalcon.time;
+  }
+
+  setDifficulty (maximum_steps: number) {
+    this.returnFalcon.maximum_number_steps = maximum_steps;
+  }
+
+  getDifficulty (): number {
+    return this.returnFalcon.maximum_number_steps;
   }
 }

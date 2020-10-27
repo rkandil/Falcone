@@ -1,0 +1,11 @@
+@import '../../styles/values.scss';
+
+.active {
+    font-weight: 700;
+    color: $error-color;
+}
+
+.start-button:disabled {
+    background-color: $gray-900;
+    cursor: not-allowed;
+}

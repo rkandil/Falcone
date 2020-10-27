@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimerComponent } from './timer.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TimerComponent', () => {
   let component: TimerComponent;
@@ -8,7 +10,9 @@ describe('TimerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimerComponent ]
+      declarations: [ TimerComponent ],
+      providers: [HttpClient],
+      imports: [HttpClientModule, BrowserAnimationsModule]
     })
     .compileComponents();
   });

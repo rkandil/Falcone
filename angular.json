@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Falcone"
+    }
+  },
+  "defaultProject": "Falcone",
+  "cli": {
+    "analytics": "da8cbea8-425d-49b4-876f-43d9ec744322"
+  }
 }

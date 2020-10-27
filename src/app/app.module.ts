@@ -16,6 +16,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { IconComponent } from './components/icon/icon.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { ResultComponent } from './components/result/result.component';
+import { DifficultyComponent } from './components/difficulty/difficulty.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ResultComponent } from './components/result/result.component';
     ErrorComponent,
     IconComponent,
     TimerComponent,
-    ResultComponent
+    ResultComponent,
+    DifficultyComponent
   ],
   imports: [
     BrowserModule,

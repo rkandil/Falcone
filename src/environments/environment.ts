@@ -10,7 +10,10 @@ export const environment = {
   get_token: "http://localhost:3000/token",
   default_error_message: "An unexpected error message occured",
   token_default_value: "PlmVXHewGEQxKJIpWnKCBtNMepseniTM",
-  maximum_number_steps: 8
+  maximum_number_steps_trivial: 12,
+  maximum_number_steps_medium: 8,
+  maximum_number_steps_hard: 4
+
 };
 
 /*

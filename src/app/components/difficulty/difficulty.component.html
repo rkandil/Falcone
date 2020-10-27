@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="u-pd-6">
+        <div class="row">
+            <div class="col-sm-4 " >
+                <div [ngClass]="{'active': difficultyLevel==='trivial'}" class="difficulty u-pd-1 u-bgc-primary u-c-light u-hvr-accent-color u-act-error-color u-tc u-bdr-5px u-bd-2px-error-color" (click)="setDifficulty('trivial')">
+                    Trival
+                </div>
+            </div>
+            <div class="col-sm-4 difficultyLevel">
+                <div  [ngClass]="{'active': difficultyLevel==='medium'}"  class="difficulty u-pd-1 u-bgc-primary u-c-light u-hvr-accent-color u-act-error-color u-tc u-bdr-5px u-bd-2px-error-color" (click)="setDifficulty('medium')">
+                    Medium
+                </div>
+            </div>
+            <div class="col-sm-4 difficultyLevel" >
+                <div  [ngClass]="{'active': difficultyLevel==='hard'}"  class="difficulty u-pd-1 u-bgc-primary u-c-light u-hvr-accent-color u-act-error-color u-tc u-bdr-5px u-bd-2px-error-color" (click)="setDifficulty('hard')">
+                    Hard
+                </div>
+            </div>
+        </div>
+        <div class="row u-jc">
+            <button class="start-button u-tc u-mgt-4 u-pd-3 u-bgc-primary u-c-light u-hvr-accent-color u-act-error-color" [disabled]="!difficultyLevel" (click)="startGame()">Let us start!</button>
+        </div>
+    </div>
+</div>

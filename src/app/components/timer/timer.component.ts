@@ -39,7 +39,7 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.wizardService.getWizard().subscribe (data => {
       if (data === 1) {
         this.initialTime = new Date().getTime();
-      } else if (data > environment.maximum_number_steps ) {
+      } else if (data > this.falconStoreService.getDifficulty() ) {
         this.falconStoreService.setTime(this.time);
       }
     });

@@ -104,7 +104,15 @@
     }
 
     &-dn {
-        disply: none;
+        display: none;
+    }
+
+    &-tc {
+        text-align: center;
+    }
+
+    &-jc {
+        justify-content: center;
     }
 
 }

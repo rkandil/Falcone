@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResultComponent } from './result.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router, RouterModule } from '@angular/router';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 describe('ResultComponent', () => {
   let component: ResultComponent;
@@ -8,7 +11,9 @@ describe('ResultComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResultComponent ]
+      declarations: [ ResultComponent ],
+      providers: [HttpClient, Router],
+      imports: [HttpClientModule, AppRoutingModule]
     })
     .compileComponents();
   });
@@ -19,7 +24,4 @@ describe('ResultComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
