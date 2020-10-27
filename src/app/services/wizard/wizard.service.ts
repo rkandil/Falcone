@@ -24,7 +24,8 @@ export class WizardService {
   }
 
   resetWizard() {
-    this.wiardSubject$.next(1);  
+    this.currentStage = 1;
+    this.wiardSubject$.next(this.currentStage);  
   }
 
   getWizard() {

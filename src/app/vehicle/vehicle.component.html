@@ -1,7 +1,0 @@
-{{ distance }}
-
-<div *ngFor="let vehicle of vehicle">
-    <input (change)="setVehicle($event, vehicle.name)" type="radio" [id]="vehicle.name | idCreator" [name]="key" [disabled]="vehicle.max_distance < distance"/>
-    <label [for]="vehicle.name | idCreator">{{vehicle.name}} <fc-icon [iconName]="vehicle.name"></fc-icon></label>
-</div>
-

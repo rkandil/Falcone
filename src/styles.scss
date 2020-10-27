@@ -42,4 +42,4 @@ $Falcone-theme: mat-light-theme((
 
 @import "./app/styles/values.scss";
 html, body { height: 100%; }
-body { background: $accent-color; margin: 0; font-family: FalconeFont, Roboto, "Helvetica Neue", sans-serif; font-size: 50px;}
+body { color: $primary-color; background: $accent-color; margin: 0; font-family: FalconeFont, Roboto, "Helvetica Neue", sans-serif; font-size: 50px;}

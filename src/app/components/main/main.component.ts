@@ -1,15 +1,17 @@
 import { Component, OnInit, ComponentFactory, ComponentFactoryResolver, ViewChild, ViewContainerRef, ComponentRef, Renderer2 } from '@angular/core';
-import { WizardService } from '../services/wizard/wizard.service';
-import { FalconStoreService } from '../services/falcon-store/falcon-store.service';
-import { FalconeGetterService } from '../services/falcon-http/falcone-getter.service';
+import { WizardService } from '../../services/wizard/wizard.service';
+import { FalconStoreService } from '../../services/falcon-store/falcon-store.service';
+import { FalconeGetterService } from '../../services/falcon-http/falcone-getter.service';
 import { environment } from 'src/environments/environment';
-import { ErrorService } from '../services/errors/error-service.service';
+import { ErrorService } from '../../services/errors/error-service.service';
 import { ErrorComponent } from '../error/error.component';
 import { MatDialog } from '@angular/material/dialog';
 import { VehicleComponent } from '../vehicle/vehicle.component';
-import { PlanetOutput, ComponentReference, VehicleOutput } from '../common/types';
+import { PlanetOutput, ComponentReference, VehicleOutput } from '../../common/types';
 import { PlanetComponent } from '../planet/planet.component';
-import { isOldComponent, pushComponentReference, returnLatestComponentMatch, generateUniqueId } from '../common/unique-id';
+import { isOldComponent, pushComponentReference, returnLatestComponentMatch, generateUniqueId, getArrayOfComponents, resetComponentArray } from '../../common/unique-id';
+import { CachingService } from 'src/app/services/caching-service/caching.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,7 +46,8 @@ export class MainComponent implements OnInit {
               private errorService: ErrorService,
               private dialog: MatDialog,
               private resolver: ComponentFactoryResolver,
-              private renderer: Renderer2
+              private cachingService: CachingService,
+              private router: Router
               ) {
                 this.uniqueId = generateUniqueId ();
               }
@@ -57,12 +60,14 @@ export class MainComponent implements OnInit {
         this.falconeGetterService.getToken().then(token => {
           this.falconStoreService.setToken(token);
         }).then (() => {
-          console.log ('entered here in then');
           //default token
           if (!this.falconStoreService.getToken()){
             this.falconStoreService.setToken(environment.token_default_value);
           }
         });
+      } else if (this.currentStep  > this.maximumNumberOfSteps) {
+        this.cachingService.resetCache();
+        this.router.navigate(['falcone-result']);
       }
     });
 
@@ -76,14 +81,7 @@ export class MainComponent implements OnInit {
     
   }
 
-  public findResult() {
-      console.log ('entered findResult()');
-    this.falconeGetterService.getResult().then(data => {
-        this.returnedResult = data.status;
-        this.returnedPlanet = data.planet;
-        this.wizardService.nextStep(this.uniqueId);
-    });
-  }
+
 
   public changeOutputVehicle(data: VehicleOutput) {
     if (data.currentStep <= environment.maximum_number_steps){
@@ -101,12 +99,21 @@ export class MainComponent implements OnInit {
   }
   
 
-
+  public refreshGame() {
+    getArrayOfComponents ().forEach(comp => {
+      comp.destroy ();
+    });
+    this.wizardService.resetWizard();
+    this.falconStoreService.resetStore();
+    resetComponentArray ();
+    this.cachingService.getCache("planets").forEach(
+      (planet)=> {
+        planet.active = '';
+      }
+    );
+  }
 
   public changeOutputPlanet(data: PlanetOutput) {
-          console.log ('changeOutputPlanet');
-
-  
       if (isOldComponent (data.uniqueId)){
         const factory: ComponentFactory<VehicleComponent> = this.resolver.resolveComponentFactory(VehicleComponent);
         this.componentRef = this.container.createComponent(factory);

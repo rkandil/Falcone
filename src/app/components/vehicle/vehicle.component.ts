@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
-import { FalconeGetterService } from '../services/falcon-http/falcone-getter.service';
-import { FalconStoreService } from '../services/falcon-store/falcon-store.service';
-import { Vehicle, VehicleOutput } from '../common/types';
-import { WizardService } from '../services/wizard/wizard.service';
-import { generateUniqueId } from '../common/unique-id';
-import { CachingService } from '../services/caching-service/caching.service';
-import { scrollToBottom } from '../common/functions';
+import { FalconeGetterService } from '../../services/falcon-http/falcone-getter.service';
+import { FalconStoreService } from '../../services/falcon-store/falcon-store.service';
+import { Vehicle, VehicleOutput } from '../../common/types';
+import { WizardService } from '../../services/wizard/wizard.service';
+import { generateUniqueId } from '../../common/unique-id';
+import { CachingService } from '../../services/caching-service/caching.service';
+import { scrollToBottom } from '../../common/functions';
 
 
 @Component({
@@ -49,14 +49,10 @@ export class VehicleComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges (changes: SimpleChanges) {
-    console.log ('this.distance before: ', this.distance);
     this.distance = changes.distance.currentValue;
-    console.log ('this.distance after: ', this.distance);
   }
 
   setVehicle(event, vehicleName: string) {
-
-    console.log ('entered SetVehicle', event.target.value);
 
     if (event.target.value === 'on') {
       this.falconStoreService.setVehicle(vehicleName, this.uniqueId);

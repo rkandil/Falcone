@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ErrorService } from '../services/errors/error-service.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({

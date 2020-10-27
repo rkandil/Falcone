@@ -22,7 +22,8 @@ export class IconComponent implements OnInit {
     'Space pod': 9737,
     'Space rocket': 9736,
     'Space shuttle': 9735, 
-    'Space ship': 9734
+    'Space ship': 9734,
+    'Refresh': 9738
   };
 
   constructor(private sanitized: DomSanitizer) { }

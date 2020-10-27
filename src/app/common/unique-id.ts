@@ -13,6 +13,16 @@ export function isOldComponent (uniqueId: string): boolean {
     return componentMatch.length === 0;
   }
 
+  export function resetComponentArray () {
+    componentIds = new Set <string>();
+    componentMatch = [];
+    createdComponentsIds = [];
+  }
+
+  export function getArrayOfComponents (): any[] {
+    return createdComponentsIds.map ((val) => {return val.vehiclePlanetCompnent});
+  }
+
   export function returnLatestComponentMatch():any {
       if (componentMatch[0] && componentMatch[0].vehiclePlanetCompnent){
         return componentMatch[0].vehiclePlanetCompnent;

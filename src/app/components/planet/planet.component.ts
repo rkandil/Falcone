@@ -1,11 +1,11 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FalconeGetterService } from '../services/falcon-http/falcone-getter.service';
-import { Planet, PlanetOutput } from '../common/types';
-import { scrollToBottom } from '../common/functions';
-import { FalconStoreService } from '../services/falcon-store/falcon-store.service';
-import { WizardService } from '../services/wizard/wizard.service';
-import { generateUniqueId } from '../common/unique-id';
-import { CachingService } from '../services/caching-service/caching.service';
+import { FalconeGetterService } from '../../services/falcon-http/falcone-getter.service';
+import { Planet, PlanetOutput } from '../../common/types';
+import { scrollToBottom } from '../../common/functions';
+import { FalconStoreService } from '../../services/falcon-store/falcon-store.service';
+import { WizardService } from '../../services/wizard/wizard.service';
+import { generateUniqueId } from '../../common/unique-id';
+import { CachingService } from '../../services/caching-service/caching.service';
 import { trigger, style, animate, transition, state } from '@angular/animations';
 
 @Component({
@@ -28,7 +28,8 @@ export class PlanetComponent implements OnInit {
 
   //public variables
   public visibility = "hidden";
-  planets: Planet[];
+  public planets: Planet[];
+  public distance: number;
   
   @Output() returnPlanetEmit: EventEmitter<PlanetOutput> = new EventEmitter<PlanetOutput>();
 
@@ -56,10 +57,17 @@ export class PlanetComponent implements OnInit {
       });
     }
     
+    this.wizardService.getWizard().subscribe ((data) => {
+      if (data === 1) {
+        this.distance = null;
+      }
+    });
+    
   }
 
   changeValue(planetName: string, planetDistance: number) {
     if (planetName && planetDistance) {
+      this.distance = planetDistance;
       this.falconStoreService.setPlanet(planetName, this.uniqueId);
       let currentStep = this.wizardService.nextStep(this.uniqueId);
       this.returnPlanetEmit.emit({distance: planetDistance, currentStep: currentStep, uniqueId: this.uniqueId});

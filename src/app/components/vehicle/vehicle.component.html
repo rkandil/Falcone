@@ -1,0 +1,7 @@
+<div class="u-mgb-5">
+    <div *ngFor="let vehicle of vehicle">
+        <fc-icon [iconName]="vehicle.name"></fc-icon><input (change)="setVehicle($event, vehicle.name)" type="radio" [id]="vehicle.name | idCreator" [name]="key" [disabled]="vehicle.max_distance < distance"/>
+        <label [for]="vehicle.name | idCreator"> {{vehicle.name}} <span class="distance">({{vehicle.max_distance}})</span> </label>
+    </div>
+</div>
+

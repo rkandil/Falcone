@@ -31,14 +31,15 @@ export class CachingService {
   }
 
   public getCache (id: string):any {
-    console.log ('getCache 1');
     let cacheTmp = this.matchCache (id);
     if (cacheTmp.length) {
-      console.log ('getCache 2');
       return cacheTmp[0].cachedObject
     } else {
-      console.log ('getCache 3');
       return null;
     }
+  }
+
+  public resetCache () {
+      this.cacheMap = [];
   }
 }

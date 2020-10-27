@@ -83,12 +83,28 @@
         }
     }
 
+    //z-index 
+    @each $z-index in $bv-sequence {
+        &-zi-#{$z-index} {
+            z-index: $z-index;
+        }
+    }
+
+    //miscellaneous
     &-of-hidden {
         overflow: hidden;
     }
 
     &-visibilit-none {
         visibility: hidden;
+    }
+
+    &-pr {
+        position: relative;
+    }
+
+    &-dn {
+        disply: none;
     }
 
 }

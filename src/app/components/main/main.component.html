@@ -1,0 +1,21 @@
+<fc-timer></fc-timer>
+<div class="refresh u-zi-2 u-bgc-accent-color" (click)="refreshGame()">
+    <fc-icon iconName="Refresh"></fc-icon>
+</div>
+
+<div #falconsMainContainer class="u-pb-3">
+    <div class="container u-of-hidden" >
+        <div #falcons>
+            <fc-planet (returnPlanetEmit)="changeOutputPlanet($event)"></fc-planet>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+

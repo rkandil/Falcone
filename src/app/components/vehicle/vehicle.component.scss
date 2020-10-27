@@ -1,0 +1,11 @@
+.distance {
+    font-size: 24px;
+    font-family: Robotto;
+}
+
+:host ::ng-deep {
+    .icon {
+        line-height: 22px;
+        font-size: 144px;
+    }
+}

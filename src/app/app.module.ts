@@ -5,15 +5,17 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlanetComponent } from './planet/planet.component';
-import { VehicleComponent } from './vehicle/vehicle.component';
-import { MainComponent } from './main/main.component';
+import { PlanetComponent } from './components/planet/planet.component';
+import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { MainComponent } from './components/main/main.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { IdCreatorPipe } from './pipes/id-creator.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorComponent } from './error/error.component';
-import { IconComponent } from './icon/icon.component';
+import { ErrorComponent } from './components/error/error.component';
+import { IconComponent } from './components/icon/icon.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { ResultComponent } from './components/result/result.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { IconComponent } from './icon/icon.component';
     MainComponent,
     IdCreatorPipe,
     ErrorComponent,
-    IconComponent
+    IconComponent,
+    TimerComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

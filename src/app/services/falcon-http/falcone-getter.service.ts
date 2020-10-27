@@ -40,9 +40,9 @@ export class FalconeGetterService {
   }
 
   getResult (): Promise<Result> {
-    console.log ('entered getResult (): Promise<any> ');
+
     return this.http.get (environment.end_result_url).pipe(map(data=> {
-                   let random = Math.floor(Math.random( ) * (data as Result[]).length) + 1;
+                   let random = Math.floor(Math.random( ) * (data as Result[]).length);
                    return  data[random] as Result;
                   }))
                   .toPromise() 
@@ -60,7 +60,6 @@ export class FalconeGetterService {
     return this.http.get(environment.get_token).pipe(map(data=> {return (data as Token).token}))
         .toPromise().catch(err=> {
           let error:number;
-          console.log ('error------', err);
           if (err.response && err.response.status===408 ) {
             error = err.response.status;
           }

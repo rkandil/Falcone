@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="u-pd-6">
+        <div *ngIf="success" class="success">
+            Congratulations!!! Your lucky planet is: {{ returnResult }}
+            <span class="time-taken"> Time taken: {{timeTaken}}s</span>
+        </div>
+        <div *ngIf="!success" class="failure">
+            Ohhhhh! We hate to see you lose!
+        </div>
+        <div>
+            <a routerLink="/falcone-game">Try Again</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+@import "../../styles/values.scss";
+
+.timer {
+    font-family: Roboto;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.15);
+    right: 10px;
+    background: $dark-blue;
+    position: fixed;
+    top: 6px;
+}

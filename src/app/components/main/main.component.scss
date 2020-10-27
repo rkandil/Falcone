@@ -1,0 +1,18 @@
+@import '../../styles/values.scss';
+
+:host ::ng-deep .refresh
+{
+    position: fixed;
+    right: 42px;
+    top: 47px;
+    cursor: pointer;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.15);
+
+    .icon{
+        color: $primary-color;
+
+        font-size: 172px;
+
+        right: 34px;
+    }
+}
