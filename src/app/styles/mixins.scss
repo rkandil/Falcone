@@ -1,0 +1,96 @@
+@import "maps.scss";
+
+
+//colors
+.u {
+    @each $c, $hex in $bv-colors {
+        // Background color
+        &-bgc-#{$c} {
+            background-color: $hex;
+        } // Color
+        &-c-#{$c} {
+            color: $hex;
+        } // Border color
+        &-bdc-#{$c} {
+            border-color: $hex;
+        }
+
+        //hover and active effects
+        &-hvr-#{$c}:hover {
+            color: $hex;
+        }
+        &-act-#{$c}:active {
+            color: $hex;
+        }
+    }
+
+
+//paddings and margins
+    @each $n, $px in $bv-paddings-and-margins {
+        &-pd-#{$n} {
+            padding: $px;
+        }
+
+        &-mg-#{$n} {
+            margin: $px;
+        }
+
+        &-mgr-#{$n} {
+            margin-right: $px;
+        }
+
+        &-mgl-#{$n} {
+            margin-left: $px;
+        }
+
+        &-mgt-#{$n} {
+            margin-top: $px;
+        }
+
+        &-mgb-#{$n} {
+            margin-bottom: $px;
+        }
+          
+
+        &-pdr-#{$n} {
+            padding-right: $px;
+        }
+
+        &-pdl-#{$n} {
+            padding-left: $px;
+        }
+
+        &-pdt-#{$n} {
+            padding-top: $px;
+        }
+
+        &-pdb-#{$n} {
+            padding-bottom: $px;
+        }
+                
+    }
+
+    //borders and borders radius
+    @each $px in $bv-borders-and-radius {
+        @each $c, $hex in $bv-colors {
+            &-bd-#{$px}-#{$c} {
+                border: $px solid $hex;
+            }
+        }
+
+        &-bdr-#{$px} {
+            border-radius: $px;
+        }
+    }
+
+    &-of-hidden {
+        overflow: hidden;
+    }
+
+    &-visibilit-none {
+        visibility: hidden;
+    }
+
+}
+
+

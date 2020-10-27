@@ -1,4 +1,4 @@
-<select (change)="changeValue($event)">
-    <option></option>
-    <option [value]="planet.name + ':::$$$:::' + planet.distance" *ngFor = "let planet of planets">{{ planet.name }}</option>
-</select>
+<div class="row u-pd-1" [@state]="visibility">
+        <div (click)="changeValue(planet.name, planet.distance)" class="col-lg-4 planet u-bgc-teritary-color u-c-light u-bdc-primary u-pd-2  u-bd-1px-primary  u-hvr-accent-color  u-act-error-color" *ngFor = "let planet of planets" [ngClass]="{'active': planet.active && planet.active.indexOf(uniqueId)!==-1, 'margin-adjustment': planet.name !=='Lerbin'}">{{ planet.name }}<fc-icon [iconName]="planet.name"></fc-icon></div>
+</div>
+

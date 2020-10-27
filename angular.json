@@ -28,7 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap-v4-grid-only/dist/bootstrap-grid.min.css",
+              "src/app/styles/mixins.scss"
             ],
             "scripts": []
           },

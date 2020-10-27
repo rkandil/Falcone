@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Planet, Vehicle, Token } from '../../common/types';
+import { Planet, Vehicle, Token, Result } from '../../common/types';
 import { map } from 'rxjs/operators';
 import { FalconStoreService } from '../falcon-store/falcon-store.service';
 import { environment } from 'src/environments/environment';
@@ -39,9 +39,12 @@ export class FalconeGetterService {
     });  
   }
 
-  getResult (): Promise<any> {
+  getResult (): Promise<Result> {
     console.log ('entered getResult (): Promise<any> ');
-    return this.http.post (environment.end_result_url, this.falconStoreService.getPayLoad())//.pipe(map(data=> {return data as Vehicle[]}))
+    return this.http.get (environment.end_result_url).pipe(map(data=> {
+                   let random = Math.floor(Math.random( ) * (data as Result[]).length) + 1;
+                   return  data[random] as Result;
+                  }))
                   .toPromise() 
                   .catch(err=> {
                     let error:number;
@@ -54,7 +57,7 @@ export class FalconeGetterService {
   }
 
   getToken (): Promise<string> {
-    return this.http.post(environment.get_token, null).pipe(map(data=> {return (data as Token).token}))
+    return this.http.get(environment.get_token).pipe(map(data=> {return (data as Token).token}))
         .toPromise().catch(err=> {
           let error:number;
           console.log ('error------', err);

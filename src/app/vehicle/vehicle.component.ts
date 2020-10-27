@@ -5,6 +5,8 @@ import { Vehicle, VehicleOutput } from '../common/types';
 import { WizardService } from '../services/wizard/wizard.service';
 import { generateUniqueId } from '../common/unique-id';
 import { CachingService } from '../services/caching-service/caching.service';
+import { scrollToBottom } from '../common/functions';
+
 
 @Component({
   selector: 'fc-vehicle',
@@ -31,13 +33,16 @@ export class VehicleComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    const timeOutTime = 200;
     let tempCached = this.cachingService.getCache("vehicles");
     if (tempCached) {
       this.vehicle = tempCached;
+      setTimeout (() => {scrollToBottom()}, timeOutTime);
     } else {
       this.falconeGetterService.getVehicles().then (vehicles => {
         this.vehicle = vehicles;
         this.cachingService.setCache ("vehicles", vehicles);
+        setTimeout (() => {scrollToBottom()}, timeOutTime);
       });
     }
  

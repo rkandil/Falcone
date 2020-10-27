@@ -1,0 +1,30 @@
+@import "values.scss";
+
+//colors
+$bv-colors:(
+	"primary"  : $primary-color,
+	"secondary": $secondary-color,
+    "teritary-color": $sky-blue,
+    "accent-color": $beige,
+    "error-color": $red-brown,
+    "dark": $black,
+    "light": $white,
+);
+
+//paddings and margins
+$bv-paddings-and-margins:(
+	"1"  : 8px,
+	"2": 16px,
+    "3": 24px,
+    "4": 32px,
+    "5": 40px,
+    "6": 48px,
+);
+
+//borders and borders radiusus
+$bv-borders-and-radius: (
+    1px, 2px, 3px, 4px, 5px
+)
+
+
+

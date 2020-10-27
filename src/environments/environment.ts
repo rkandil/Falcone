@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   planets_url: "https://findfalcone.herokuapp.com/planets",
   vehicle_url: "https://findfalcone.herokuapp.com/vehicles",
-  end_result_url: "https://findfalcone.herokuapp.com/find",
-  get_token: "https://5f5ff7f790cf8d00165573ed.mockapi.io/token",
+  end_result_url: "http://localhost:3000/find",
+  get_token: "http://localhost:3000/token",
   default_error_message: "An unexpected error message occured",
   token_default_value: "PlmVXHewGEQxKJIpWnKCBtNMepseniTM",
   maximum_number_steps: 8

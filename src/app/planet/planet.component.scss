@@ -1,0 +1,23 @@
+@import '../styles/values.scss';
+
+.planet {
+    font-size: 100px;
+    cursor: pointer;
+    &:active, &.active {
+        font-weight: 700;
+        color: $error-color;
+    }
+}
+
+:host ::ng-deep  {
+    .margin-adjustment .icon {
+        margin-right: 16px;
+    }
+    .icon {
+        position: absolute;
+        font-size: 12.2rem;
+        bottom: -17px;
+        right: 14px;
+    }
+}
+

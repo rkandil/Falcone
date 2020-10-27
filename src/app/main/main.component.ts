@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactory, ComponentFactoryResolver, ViewChild, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Component, OnInit, ComponentFactory, ComponentFactoryResolver, ViewChild, ViewContainerRef, ComponentRef, Renderer2 } from '@angular/core';
 import { WizardService } from '../services/wizard/wizard.service';
 import { FalconStoreService } from '../services/falcon-store/falcon-store.service';
 import { FalconeGetterService } from '../services/falcon-http/falcone-getter.service';
@@ -9,7 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { VehicleComponent } from '../vehicle/vehicle.component';
 import { PlanetOutput, ComponentReference, VehicleOutput } from '../common/types';
 import { PlanetComponent } from '../planet/planet.component';
-import { isOldComponent, pushComponentReference, returnLatestComponentMatch } from '../common/unique-id';
+import { isOldComponent, pushComponentReference, returnLatestComponentMatch, generateUniqueId } from '../common/unique-id';
+
 
 @Component({
   selector: 'fal-main',
@@ -25,11 +26,15 @@ export class MainComponent implements OnInit {
   public thirdVehicle: number;
   public fourthVehicle: number;
   public currentStep: number;
-  public returnedResult: Promise<any>;
+  public returnedResult: string;
+  public returnedPlanet: string;
   public token: string;
-  public finalStep = false;
+  private uniqueId: string;
+  public maximumNumberOfSteps: number;
 
   @ViewChild("falcons", { read: ViewContainerRef }) container;
+  @ViewChild("falconsMainContainer") mainContainer;
+
   componentRef: ComponentRef<any>;
 
 
@@ -38,14 +43,17 @@ export class MainComponent implements OnInit {
               private falconStoreService: FalconStoreService,
               private errorService: ErrorService,
               private dialog: MatDialog,
-              private resolver: ComponentFactoryResolver
-              ) { }
+              private resolver: ComponentFactoryResolver,
+              private renderer: Renderer2
+              ) {
+                this.uniqueId = generateUniqueId ();
+              }
 
   ngOnInit(): void {
+    this.maximumNumberOfSteps = environment.maximum_number_steps;
     this.wizardService.getWizard().subscribe(val => {
       this.currentStep = val;
       if (this.currentStep === 1) {
-
         this.falconeGetterService.getToken().then(token => {
           this.falconStoreService.setToken(token);
         }).then (() => {
@@ -64,11 +72,17 @@ export class MainComponent implements OnInit {
         this.errorMessage = data;
       }
     })
+
+    
   }
 
   public findResult() {
       console.log ('entered findResult()');
-    this.returnedResult = this.falconeGetterService.getResult();
+    this.falconeGetterService.getResult().then(data => {
+        this.returnedResult = data.status;
+        this.returnedPlanet = data.planet;
+        this.wizardService.nextStep(this.uniqueId);
+    });
   }
 
   public changeOutputVehicle(data: VehicleOutput) {
@@ -80,11 +94,12 @@ export class MainComponent implements OnInit {
           this.changeOutputPlanet(event);
         });
         pushComponentReference(data.uniqueId, this.componentRef);
+
+        
       }
-    } else {
-      this.finalStep = true;
     }
   }
+  
 
 
 

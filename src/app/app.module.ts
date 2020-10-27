@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IdCreatorPipe } from './pipes/id-creator.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorComponent } from './error/error.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ErrorComponent } from './error/error.component';
     VehicleComponent,
     MainComponent,
     IdCreatorPipe,
-    ErrorComponent
+    ErrorComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
